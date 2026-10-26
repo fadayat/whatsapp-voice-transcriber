@@ -1,0 +1,45 @@
+name: Bug report
+description: Report a reproducible problem without sharing private data.
+title: "[Bug]: "
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Never include API keys, real voice notes, transcripts, contacts, WhatsApp sessions, or real-chat screenshots.
+  - type: textarea
+    id: problem
+    attributes:
+      label: What happened?
+      description: Describe the problem using synthetic or redacted data.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Reproduction steps
+      placeholder: |
+        1. Start the local helper
+        2. Open WhatsApp Web
+        3. Select Transcript
+    validations:
+      required: true
+  - type: input
+    id: browser
+    attributes:
+      label: Browser and version
+    validations:
+      required: true
+  - type: input
+    id: os
+    attributes:
+      label: Operating system
+    validations:
+      required: true
+  - type: checkboxes
+    id: privacy
+    attributes:
+      label: Privacy confirmation
+      options:
+        - label: I removed all credentials, private audio, transcripts, contacts, and real-chat images.
+          required: true

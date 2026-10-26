@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="az">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>WhatsApp transcriber fixture</title>
+    <style>
+      :root { color-scheme: light; }
+      * { box-sizing: border-box; }
+      body {
+        background: #efeae2;
+        font-family: "Segoe UI", sans-serif;
+        margin: 0;
+        min-height: 100vh;
+        padding: 48px;
+      }
+      .chat {
+        margin: 0 auto;
+        max-width: 760px;
+      }
+      .message {
+        background: #d9fdd3;
+        border-radius: 9px;
+        box-shadow: 0 1px 1px rgb(0 0 0 / 0.12);
+        margin-left: auto;
+        min-width: 340px;
+        padding: 9px 8px 5px;
+        position: relative;
+        width: min-content;
+      }
+      .conversation-row {
+        margin-top: 16px;
+        width: 100%;
+      }
+      .conversation-row [data-testid="msg-container"] {
+        margin-left: auto;
+        width: min-content;
+      }
+      .audio-row {
+        align-items: center;
+        display: flex;
+        gap: 12px;
+        min-width: 320px;
+      }
+      .play {
+        background: #087f65;
+        border: 0;
+        border-radius: 50%;
+        color: white;
+        cursor: pointer;
+        height: 36px;
+        width: 36px;
+      }
+      .track {
+        background: #84a79d;
+        border-radius: 4px;
+        height: 3px;
+        width: 220px;
+      }
+      time {
+        bottom: 7px;
+        color: #667781;
+        font-size: 11px;
+        position: absolute;
+        right: 9px;
+      }
+      audio { display: none; }
+      @media (prefers-color-scheme: dark) {
+        body { background: #0b141a; }
+        .message {
+          background: #202c33;
+          box-shadow: 0 1px 1px rgb(0 0 0 / 0.32);
+        }
+        .track { background: #718086; }
+        time { color: #8696a0; }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="chat">
+      <article class="message" data-id="message-voice-1">
+        <div class="audio-row">
+          <button class="play" type="button" aria-label="Play voice message">▶</button>
+          <div class="track"></div>
+          <time>10:42</time>
+          <audio src="data:audio/wav;base64,UklGRg=="></audio>
+        </div>
+      </article>
+      <div class="conversation-row" data-id="message-voice-az">
+        <article data-testid="msg-container">
+          <div class="message">
+            <div class="audio-row">
+              <button class="play" type="button" aria-label="Səsli mesajı oxudun">▶</button>
+              <div class="track"></div>
+              <time>10:43</time>
+            </div>
+          </div>
+        </article>
+      </div>
+    </main>
+    <script>
+      window.__watPlayEvents = 0;
+      document.querySelector('[data-id="message-voice-az"] .play').addEventListener("click", () => {
+        const blob = new Blob([new Uint8Array([82, 73, 70, 70, 0, 0, 0, 0])], {
+          type: "audio/wav"
+        });
+        const media = new Audio(URL.createObjectURL(blob));
+        window.__watLastDetachedMedia = media;
+        media.addEventListener("play", () => {
+          window.__watPlayEvents += 1;
+        });
+        void media.play();
+      });
+    </script>
+  </body>
+</html>

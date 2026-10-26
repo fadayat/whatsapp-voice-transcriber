@@ -1,0 +1,11 @@
+# Local credentials and backups. Never commit these files.
+.env*
+!.env.example
+
+node_modules/
+coverage/
+*.log
+
+# Local agent context; not part of the public product.
+/AGENTS.md
+/HANDOFF.md

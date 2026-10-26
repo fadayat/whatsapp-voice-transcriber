@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Voice Note Transcriber</title>
+    <link rel="stylesheet" href="popup.css">
+  </head>
+  <body>
+    <main>
+      <header>
+        <span class="wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+        <div>
+          <h1>Voice Note Transcriber</h1>
+          <p>Read selected voice notes without playing them aloud.</p>
+        </div>
+      </header>
+
+      <section class="status" aria-live="polite">
+        <span class="status-dot" aria-hidden="true"></span>
+        <div>
+          <strong id="status-title">Checking local helper…</strong>
+          <span id="status-detail">Nothing has been sent.</span>
+        </div>
+        <button id="refresh" type="button" aria-label="Check local helper again">Check</button>
+      </section>
+
+      <button id="setup" type="button">Open secure setup</button>
+
+      <ol>
+        <li><span>1</span><p>Start the local helper with <b>npm start</b>.</p></li>
+        <li><span>2</span><p>Connect your Groq key once.</p></li>
+        <li><span>3</span><p>Choose <b>Transcript</b> on a voice note.</p></li>
+      </ol>
+
+      <footer>Only the voice note you select is sent to Groq. The local helper does not save audio or transcripts.</footer>
+    </main>
+    <script src="popup.js"></script>
+  </body>
+</html>

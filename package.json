@@ -1,0 +1,28 @@
+{
+  "name": "whatsapp-voice-transcriber",
+  "version": "0.2.0",
+  "private": true,
+  "description": "A privacy-conscious Brave extension and local helper for on-demand WhatsApp voice-note transcription.",
+  "license": "MIT",
+  "keywords": [
+    "brave-extension",
+    "groq",
+    "privacy",
+    "speech-to-text",
+    "whatsapp"
+  ],
+  "scripts": {
+    "start": "node server/index.js",
+    "test": "node --test",
+    "test:ui": "python test/ui_test.py",
+    "check": "node --check server/index.js && node --check server/app.js && node --check server/config.js && node --check server/secret-store.js && node --check server/setup/setup.js && node --check scripts/check-public-snapshot.js && node --check extension/background.js && node --check extension/core.js && node --check extension/page-hook.js && node --check extension/content.js && node --check extension/popup.js",
+    "security:check": "node scripts/check-public-snapshot.js",
+    "verify": "npm test && npm run check && npm run test:ui"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "just-secrets": "0.0.2"
+  }
+}

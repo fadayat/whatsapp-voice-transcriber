@@ -1,0 +1,42 @@
+{
+  "manifest_version": 3,
+  "name": "Voice Note Transcriber",
+  "version": "0.2.0",
+  "description": "Transcribe selected WhatsApp Web voice notes without audible playback.",
+  "permissions": [],
+  "host_permissions": [
+    "http://127.0.0.1:4318/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_title": "Voice Note Transcriber",
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://web.whatsapp.com/*"
+      ],
+      "js": [
+        "page-hook.js"
+      ],
+      "world": "MAIN",
+      "run_at": "document_start"
+    },
+    {
+      "matches": [
+        "https://web.whatsapp.com/*"
+      ],
+      "js": [
+        "core.js",
+        "content.js"
+      ],
+      "css": [
+        "content.css"
+      ],
+      "run_at": "document_idle"
+    }
+  ]
+}
