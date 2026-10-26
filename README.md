@@ -4,6 +4,8 @@ A privacy-conscious Brave/Chromium extension that adds an on-demand transcript
 action to WhatsApp Web voice messages. It supports automatic language detection
 and uses Groq's `whisper-large-v3` model through a local-only Node.js helper.
 
+🌐 **Website & Interactive Demo:** [whatsapp-voice-transcriber-website.vercel.app](https://whatsapp-voice-transcriber-website.vercel.app)
+
 > This project is not affiliated with, endorsed by, or sponsored by WhatsApp,
 > Meta, Brave, or Groq.
 
