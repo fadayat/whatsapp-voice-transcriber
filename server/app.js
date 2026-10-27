@@ -53,8 +53,24 @@ class HttpError extends Error {
   }
 }
 
+function isLoopbackHostname(hostname) {
+  return hostname === "127.0.0.1" || hostname === "localhost" || hostname === "[::1]";
+}
+
 function isLocalSetupOrigin(origin, host) {
-  return Boolean(origin && host && origin === `http://${host}`);
+  if (!origin || !host) return false;
+  try {
+    const originUrl = new URL(origin);
+    const hostUrl = new URL(`http://${host}`);
+    return (
+      originUrl.protocol === "http:" &&
+      originUrl.host === hostUrl.host &&
+      isLoopbackHostname(originUrl.hostname) &&
+      isLoopbackHostname(hostUrl.hostname)
+    );
+  } catch {
+    return false;
+  }
 }
 
 function isAllowedSetupOrigin(origin, host) {

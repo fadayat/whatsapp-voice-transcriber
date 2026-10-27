@@ -294,3 +294,22 @@ test("setup API rejects browser-extension origins", async (t) => {
   assert.equal(response.status, 403);
   assert.equal(body.error.code, "ORIGIN_DENIED");
 });
+
+test("setup API rejects matching non-loopback Host and Origin headers", async (t) => {
+  const server = createApp(config({ apiKey: "" }), {
+    fetchImpl: async () => assert.fail("Groq must not be called")
+  });
+  t.after(() => server.close());
+  const baseUrl = await listen(server);
+
+  const response = await fetch(`${baseUrl}/setup/bootstrap`, {
+    headers: {
+      Host: "attacker.example:4318",
+      Origin: "http://attacker.example:4318"
+    }
+  });
+  const body = await response.json();
+  assert.equal(response.status, 403);
+  assert.equal(body.error.code, "ORIGIN_DENIED");
+  assert.equal(body.setupToken, undefined);
+});
