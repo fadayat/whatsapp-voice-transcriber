@@ -73,7 +73,7 @@ work required before a browser-store release.
 1. Clone the repository and enter it:
 
    ```bash
-   git clone https://github.com/YOUR_USERNAME/whatsapp-voice-transcriber.git
+   git clone https://github.com/fadayat/whatsapp-voice-transcriber.git
    cd whatsapp-voice-transcriber
    ```
 
