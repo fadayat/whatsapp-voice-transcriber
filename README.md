@@ -1,6 +1,6 @@
 # Voice Note Transcriber
 
-A privacy-conscious Brave/Chromium extension that adds an on-demand transcript
+An on-demand Brave/Chromium extension that adds a transcript
 action to WhatsApp Web voice messages. It supports automatic language detection
 and uses Groq's `whisper-large-v3` model through a local-only Node.js helper.
 
